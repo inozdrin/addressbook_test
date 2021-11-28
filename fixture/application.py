@@ -12,7 +12,7 @@ class Application:
 
     def __init__(self):
         self.wd = WebDriver()
-        self.wd.implicitly_wait(60)
+        # self.wd.implicitly_wait(1)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
 
@@ -32,11 +32,10 @@ class Application:
             self.wd.switch_to.window(current_window)
         else:
             pass
+
     def open_home_page(self):
         wd = self.wd
         wd.get('http://localhost/addressbook/')
-
-        time.sleep(3)
 
 
     def destroy(self):

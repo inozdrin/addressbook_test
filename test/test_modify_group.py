@@ -6,12 +6,19 @@ from model.group import Group
 
 
 def test_modify_group_name(app):
+    old_group_list = app.group.get_group_list()
+    group = Group(name="New name")
+    group.id = old_group_list[0].id
+    app.group.modify(group)
+    new_group_list = app.group.get_group_list()
+    assert len(old_group_list)  == len(new_group_list)
+    old_group_list[0] = group
+    assert sorted(old_group_list, key=Group.id_or_max) == sorted(new_group_list, key=Group.id_or_max)
 
-    app.group.modify(Group(name='New group'))
 
 
-
-def test_modify_group_header(app):
-
-    app.group.modify(Group(header='New group Header'))
-
+# def test_modify_group_header(app):
+#     old_group_list = app.group.get_group_list()
+#     app.group.modify(Group(header='New group Header'))
+#     new_group_list = app.group.get_group_list()
+#     assert len(old_group_list) == len(new_group_list)
