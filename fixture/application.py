@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 
 from fixture.session import SessionHelper
 from fixture.group_helper import GroupHelper
+from fixture.contact_helper import ContactHelper
+
 import time
 
 
@@ -15,6 +17,7 @@ class Application:
         # self.wd.implicitly_wait(1)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
+        self.contact = ContactHelper(self)
 
     def is_valid(self):
         try:
